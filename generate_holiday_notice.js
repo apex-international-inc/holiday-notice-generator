@@ -17,7 +17,7 @@ const lineHeight = 20;
 const topPadding = 12;
 const bottomPadding = 6;
 const leftPadding = 12;
-const width = 600;
+const width = 480;
 const height = topPadding + holidays.length * lineHeight + bottomPadding;
 
 const canvas = createCanvas(width * scale, height * scale);
