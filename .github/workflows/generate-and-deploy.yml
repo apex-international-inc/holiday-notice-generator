@@ -35,7 +35,9 @@ jobs:
 
       - name: Generate holiday notice image
         run: node generate_holiday_notice.js
-
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+          API_URL: ${{ secrets.API_URL }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
