@@ -42,8 +42,8 @@ holidays.forEach((item, i) => {
 
 // 🔲 オレンジ色の枠線を描く
 ctx.strokeStyle = '#e7721c';
-ctx.lineWidth = 2;
-ctx.strokeRect(1, 1, width - 2, height - 2); // 少し内側に描くことで線が途切れない
+ctx.lineWidth = 1;
+ctx.strokeRect(1, 1, width - 2, height - 2);
 
 // 💾 保存
 const buffer = canvas.toBuffer('image/png');
