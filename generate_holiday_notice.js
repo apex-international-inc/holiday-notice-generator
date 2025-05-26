@@ -10,28 +10,26 @@ const holidays = [
   { date: '09/23/2025 (Tue)', name: 'Autumnal Equinox Day!' },
 ];
 
-// 🔧 スケーリング係数（高くするほどシャープ、4などもOK）
+// 🔧 スケーリング係数
 const scale = 2;
 
 const lineHeight = 20;
-const topPadding = 0;
-const bottomPadding = 0;
-const leftPadding = 2;
-const width = 480;
+const topPadding = 12;
+const bottomPadding = 6;
+const leftPadding = 12;
+const width = 600;
 const height = topPadding + holidays.length * lineHeight + bottomPadding;
 
-// 📐 高解像度キャンバス作成
 const canvas = createCanvas(width * scale, height * scale);
 const ctx = canvas.getContext('2d');
 
-// スケーリング適用（描画のスケールを調整）
 ctx.scale(scale, scale);
 
 // 背景（白）
 ctx.fillStyle = '#ffffff';
 ctx.fillRect(0, 0, width, height);
 
-// フォント設定（サイズは scale に合わせて変えなくてOK）
+// フォントと文字色
 ctx.font = '14px "monospace"';
 ctx.fillStyle = '#000000';
 ctx.textBaseline = 'top';
@@ -42,12 +40,17 @@ holidays.forEach((item, i) => {
   ctx.fillText(`${item.date} ${item.name}`, leftPadding, y);
 });
 
-// 💾 画像をsharpでリサイズして保存
+// 🔲 オレンジ色の枠線を描く
+ctx.strokeStyle = '#e7721c';
+ctx.lineWidth = 2;
+ctx.strokeRect(1, 1, width - 2, height - 2); // 少し内側に描くことで線が途切れない
+
+// 💾 保存
 const buffer = canvas.toBuffer('image/png');
 const outPath = path.join(__dirname, 'public/holiday_notice.png');
 
 sharp(buffer)
-  .resize(width, height) // ← ここでピクセル数を元サイズに戻す
+  .resize(width, height)
   .toFile(outPath)
   .then(() => console.log(`✅ Sharp image saved: ${outPath}`))
   .catch(console.error);
