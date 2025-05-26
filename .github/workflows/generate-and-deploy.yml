@@ -2,7 +2,7 @@ name: Generate and Deploy Holiday Notice
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 16 * * *' # 日本時間の翌日午前1時に実行 (UTCでは前日の16時)
   workflow_dispatch:
 
 permissions:
