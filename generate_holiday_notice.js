@@ -19,7 +19,6 @@ const rightPadding = 12;
 
 // 🧠 JSONをHTTPSで取得
 function fetchJson(url) {
-  console.log(`🔗 Fetching data from: ${url}`);
   return new Promise((resolve, reject) => {
     https.get(
       url,
@@ -29,7 +28,6 @@ function fetchJson(url) {
         }
       },
       (res) => {
-        console.log(`🌐 Response status: ${res.statusCode}`);
         let raw = '';
         res.on('data', (chunk) => (raw += chunk));
         res.on('end', () => resolve(JSON.parse(raw)));
@@ -42,11 +40,12 @@ function fetchJson(url) {
 (async () => {
   try {
     const { holidays } = await fetchJson(API_URL);
-    console.log(`📅 ${holidays.length} holidays fetched.`);
+
     // 最大文字幅を計算
     const tempCanvas = createCanvas(0, 0);
     const tempCtx = tempCanvas.getContext('2d');
     tempCtx.font = '14px "monospace"';
+
     const textWidths = holidays.map((h) => {
       const dateWidth = tempCtx.measureText(h.date).width;
       const nameWidth = tempCtx.measureText(' ' + h.name).width;
@@ -72,12 +71,13 @@ function fetchJson(url) {
     holidays.forEach((item, i) => {
       const y = topPadding + i * lineHeight;
 
-      ctx.font = 'bold 14px "monospace"';
-      ctx.fillStyle = '#000000';
+      ctx.font = '14px "monospace"';
+      ctx.fillStyle = 'red';
       ctx.fillText(item.date, leftPadding, y);
       const dateWidth = ctx.measureText(item.date).width;
 
       ctx.font = '14px "monospace"';
+      ctx.fillStyle = '#000000';
       ctx.fillText(' ' + item.name, leftPadding + dateWidth, y);
     });
 
