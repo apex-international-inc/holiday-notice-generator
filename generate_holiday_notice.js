@@ -5,9 +5,9 @@ const sharp = require('sharp');
 
 // 📅 データ
 const holidays = [
-  { date: '07/21/2025 (Sun)', name: 'Marine Day' },
-  { date: '09/15/2025 (Mon)', name: 'Respect for the Aged Day' },
-  { date: '09/23/2025 (Tue)', name: 'Autumnal Equinox Day' },
+  { date: '07/21/2025 (Sun)', name: 'Marine Day!' },
+  { date: '09/15/2025 (Mon)', name: 'Respect for the Aged Day!' },
+  { date: '09/23/2025 (Tue)', name: 'Autumnal Equinox Day!' },
 ];
 
 // 🔧 スケーリング係数（高くするほどシャープ、4などもOK）
